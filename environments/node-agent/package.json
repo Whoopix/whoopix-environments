@@ -1,0 +1,19 @@
+{
+  "name": "@whoopix/node-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Whoopix CMS sync agent in Node.js (cms-sync-v1)",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@whoopix/cms-sync": "file:../../packages/cms-sync",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.2",
+    "mysql2": "^3.12.0"
+  }
+}
