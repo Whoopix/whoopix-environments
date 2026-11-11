@@ -1,17 +1,39 @@
-# Agent guide — Whoopix environments monorepo
+# Agent guide — Whoopix environments
 
-This repo holds **multiple tenant/dev environments** that integrate with Whoopix CMS via **cms-sync-v1**.
+You help developers **build websites** that stay connected to **Whoopix CMS** via **cms-sync-v1**.
 
-## Choosing a stack
+## Read first
 
-- Classic PHP Whoopix front → `environments/php` or clone `Whoopix/whoopix-tenant`
-- JS sync agent / BFF → `environments/node-agent`
-- SPA / headless UI → `environments/react`
-- Shared signing + typed calls → `packages/cms-sync`
+1. [README.md](README.md) — hub overview  
+2. [docs/getting-started.md](docs/getting-started.md)  
+3. Stack-specific `AGENTS.md` under `environments/*`  
+4. [docs/cms-sync-v1.md](docs/cms-sync-v1.md) before changing any agent code  
 
-## Rules
+## Goals
 
-1. Never invent a parallel auth scheme — keep HMAC headers exactly as documented.
-2. Never commit real `SYNC_CLIENT_SECRET`, DB passwords, or `.env`.
-3. Prefer content in CMS-managed tables / API payloads over hard-coded marketing copy.
-4. When adding a new environment (Vue, Next, Python, …), mirror the same README + AGENTS + `.env.example` pattern and link it from the root README.
+- Generate polished fronts (templates/components)  
+- Keep editable content flowing through the CMS/agent  
+- Preserve HMAC sync auth and example-only secrets  
+
+## Do / Don’t
+
+**Do**
+
+- Follow [docs/build-with-cursor.md](docs/build-with-cursor.md) prompt patterns  
+- Put new env knobs in `.env.example` / `*.example.php`  
+- Prefer existing modules/tables over parallel CMS bypasses  
+
+**Don’t**
+
+- Commit `.env`, `db.php`, `config.php`, `system/api/config.php`  
+- Put `SYNC_CLIENT_SECRET` in browser code  
+- Remove or weaken `X-Sync-*` verification  
+
+## Stack map
+
+| Task | Location |
+|------|----------|
+| PHP site | [whoopix-tenant](https://github.com/Whoopix/whoopix-tenant) |
+| Node agent | `environments/node-agent` |
+| React UI | `environments/react` |
+| Shared HMAC client | `packages/cms-sync` |
